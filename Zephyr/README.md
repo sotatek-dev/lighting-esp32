@@ -26,23 +26,18 @@ Below is short explanation of remaining files in the project folder.
 ├── gpio_test
 │   ├── CMakeLists.txt
 │   ├── prj.conf
-│   ├── README.rst
-│   ├── sample.yaml
 │   └── src
 │       └── main.c
+├── README.md
 ├── spi_test
 │   ├── CMakeLists.txt
 │   ├── prj.conf
-│   ├── README.rst
-│   ├── sample.yaml
 │   └── src
 │       └── main.c
 └── uart_test
     ├── boards
     ├── CMakeLists.txt
     ├── prj.conf
-    ├── README.rst
-    ├── sample.yaml
     └── src
         └── main.c
 ```
