@@ -1,3 +1,3 @@
 ## Guides
-- Zephyr: [Zephyr ReadMe](Zephyr/ReadMe.md)
-- FreeRTOS: [FreeRTOS ReadMe](FreeRTOS/ReadMe.md) 
+- Zephyr: [Zephyr README](Zephyr/README.md)
+- FreeRTOS: [FreeRTOS README](FreeRTOS/README.md) 
