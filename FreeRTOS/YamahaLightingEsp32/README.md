@@ -1,35 +1,86 @@
-| Supported Targets | ESP32 | ESP32-C2 | ESP32-C3 | ESP32-C5 | ESP32-C6 | ESP32-H2 | ESP32-P4 | ESP32-S2 | ESP32-S3 |
-| ----------------- | ----- | -------- | -------- | -------- | -------- | -------- | -------- | -------- | -------- |
+# YamahaLightingEsp32
 
-# _Sample project_
+A project for porting Block B and C code to the ESP32 with FreeRTOS integration.
 
-(See the README.md file in the upper level 'examples' directory for more information about examples.)
+## Prerequisites
 
-This is the simplest buildable example. The example is used by command `idf.py create-project`
-that copies the project to user specified path and set it's name. For more information follow the [docs page](https://docs.espressif.com/projects/esp-idf/en/latest/api-guides/build-system.html#start-a-new-project)
+- ESP-IDF v5.3
+- ESP32-S3 development board 
+- Visual Studio Code with ESP-IDF extension
+- Python 3.11+
+- Git
 
+## Installation & Setup
 
+### 1. Install ESP-IDF
 
-## How to use example
-We encourage the users to use the example as a template for the new projects.
-A recommended way is to follow the instructions on a [docs page](https://docs.espressif.com/projects/esp-idf/en/latest/api-guides/build-system.html#start-a-new-project).
+```bash
+# Windows Installation
+cd C:/esp
+git clone -b v5.3 --recursive https://github.com/espressif/esp-idf.git
+cd esp-idf
+./install.bat
+```
 
-## Example folder contents
+### 2. Configure VS Code
 
-The project **sample_project** contains one source file in C language [main.c](main/main.c). The file is located in folder [main](main).
+1. Install ESP-IDF extension from VS Code marketplace
+2. Open VS Code settings (Ctrl+,)
+3. Search for "ESP-IDF" 
+4. Set ESP-IDF path to your installation directory (e.g. `C:/esp/esp-idf`)
 
-ESP-IDF projects are built using CMake. The project build configuration is contained in `CMakeLists.txt`
-files that provide set of directives and instructions describing the project's source files and targets
-(executable, library, or both). 
+### 3. Project Setup
 
-Below is short explanation of remaining files in the project folder.
+```bash
+# Clone project
+git clone [project-url]
+cd YamahaLightingEsp32
+
+# Configure project
+idf.py set-target esp32s3
+idf.py menuconfig
+```
+
+In menuconfig:
+1. Navigate to `Component config → FreeRTOS`
+2. Enable FreeRTOS support
+3. Save configuration
+
+## Building & Flashing
+
+### Build Project
+```bash
+idf.py build
+```
+
+### Flash to Device
+```bash
+# Replace COM3 with your device's port
+idf.py -p COM3 flash 
+```
+
+### Monitor Output
+```bash
+idf.py -p COM3 monitor
+```
+
+Press `Ctrl+]` to exit monitor mode.
+
+## Project Structure
 
 ```
-├── CMakeLists.txt
-├── main
-│   ├── CMakeLists.txt
-│   └── main.c
-└── README.md                  This is the file you are currently reading
+YamahaLightingEsp32/
+├── main/
+│   ├── BlockB++/           # Core Block B logic
+│   │   ├── include/
+│   │   └── src/
+│   ├── BlockC++/           # Core Block C logic
+│   │   ├── include/
+│   │   └── src/
+│   ├── Eigen/              # Eigen library
+│   ├── nlohmann/           # Nlohmann library (only need json.hpp)
+│   ├── main_freeRTOS.cpp  # Main application file
+│   └── CMakeLists.txt
+├── sdkconfig               # Project configuration
+└── CMakeLists.txt         # Build configuration
 ```
-Additionally, the sample project contains Makefile and component.mk files, used for the legacy Make based build system. 
-They are not used or needed when building with CMake and idf.py.
