@@ -41,11 +41,6 @@ idf.py set-target esp32s3
 idf.py menuconfig
 ```
 
-In menuconfig:
-1. Navigate to `Component config → FreeRTOS`
-2. Enable FreeRTOS support
-3. Save configuration
-
 ## Building & Flashing
 
 ### Build Project
